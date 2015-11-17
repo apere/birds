@@ -54,6 +54,7 @@ void setup() {
   pulse = new PVector(0, -.2,-.2);
   reversePulse = new PVector(0, 1.2, 1.2);
   inPulse = false;
+  frameRate(30);
 }
 void draw() {
   background(0);
@@ -70,24 +71,27 @@ void draw() {
       }
     }
      flock.run(pulseSensor, noForce);
-     flock2.run(pulseSensor, noForce);
+     //flock2.run(pulseSensor, noForce);
      inPulse = true;
   } else if(pulseSensor < 550 && inPulse) {
      flock.run(pulseSensor, noForce);
-     flock2.run(pulseSensor, noForce);
+     //flock2.run(pulseSensor, noForce);
      inPulse = false;
   }
   else {
      flock.run(pulseSensor, noForce); 
-     flock2.run(pulseSensor, noForce);
+     //flock2.run(pulseSensor, noForce);
   }
   
  
+ 
+  text("BPM: " + BPM, 10, height - 10);text("BPM: " + BPM, 10, height - 10);
   fill(255);
   if(pulseSensor > 520 && BPM > 0) {
      fill(255, 20, 90); 
   }
-  text("BPM: " + BPM, 10, height - 10);
+  text("Framerate: " + int(frameRate),90,height-10);
+  
 }
 
 

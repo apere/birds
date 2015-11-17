@@ -13,6 +13,7 @@ class Boid {
   float r;
   float maxforce;    // Maximum steering force
   float maxspeed;    // Maximum speed
+  boolean highlight;
   
   
   float cScale;
@@ -25,7 +26,7 @@ class Boid {
   
   Boid(float x, float y, float z, int lifeTime, ArrayList<PImage> f, float radius, float scale) {
     acceleration = new PVector(0,0, 0);
-    velocity = new PVector(random(-5,-4),random(-5, 2)*scale, random(-20, -1));
+    velocity = new PVector(random(-2,-1),random(-5, 2)*scale, random(-5, -1));
     location = new PVector(x,y,z);
     r = radius;
     maxspeed = 5;
@@ -35,7 +36,7 @@ class Boid {
     frames = f;
     frameIndex = 0;
     frameC = frames.size(); 
-    
+    highlight = false;
   }
 
   void run(ArrayList<Boid> boids, int p) {
