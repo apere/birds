@@ -54,7 +54,6 @@ void setup() {
   pulse = new PVector(0, -.2,-.2);
   reversePulse = new PVector(0, 1.2, 1.2);
   inPulse = false;
-  frameRate(30);
 }
 void draw() {
   background(0);
@@ -64,34 +63,31 @@ void draw() {
       for(int i = 0; i < pulseSensor%14; i++) {
         float bpm = map(BPM, 60, 100, 2, 5);
         float h = map(pulseSensor, 450, 590, -600, -900);
-         Boid b = new Boid(width - 50, random(height - 50, height - 100) - pulseSensor/8, random(-50, -30),600, frames, bpm, 1);
+         Boid b = new Boid(width - 50, random(height - 50, height - 100) - pulseSensor/8, random(-50, -30),700, frames, bpm, 1);
          flock.addBoid(b);
-         Boid b2 = new Boid(width - 50, random(50, 100), random(h, h - 20),650, frames, bpm, -1);
+         Boid b2 = new Boid(width - 50, random(50, 100), random(h, h - 20),750, frames, bpm, -1);
          flock2.addBoid(b2);
       }
     }
      flock.run(pulseSensor, noForce);
-     //flock2.run(pulseSensor, noForce);
+     flock2.run(pulseSensor, noForce);
      inPulse = true;
   } else if(pulseSensor < 550 && inPulse) {
      flock.run(pulseSensor, noForce);
-     //flock2.run(pulseSensor, noForce);
+     flock2.run(pulseSensor, noForce);
      inPulse = false;
   }
   else {
      flock.run(pulseSensor, noForce); 
-     //flock2.run(pulseSensor, noForce);
+     flock2.run(pulseSensor, noForce);
   }
   
- 
- 
-  text("BPM: " + BPM, 10, height - 10);text("BPM: " + BPM, 10, height - 10);
+  text("Framerate: " + int(frameRate),90,height-10);
   fill(255);
   if(pulseSensor > 520 && BPM > 0) {
      fill(255, 20, 90); 
   }
-  text("Framerate: " + int(frameRate),90,height-10);
-  
+  text("BPM: " + BPM, 10, height - 10);
 }
 
 
